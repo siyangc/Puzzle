@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Please Open [http://puzzle.uothehill.com.au](http://puzzle.uothehill.com.au) to check the project
+Please Open [http://puzzle.upthehill.com.au](http://puzzle.upthehill.com.au) to check the project
 ## Available Scripts
 
 In the project directory, you can run:
