@@ -15,7 +15,7 @@ export default class game extends Component {
     }
         
     gameStyle = {
-        margin: '50px'
+        margin: '5%'
     }
     correctOrder = [1,2,3,4,5,6,7,8,null]
 
@@ -23,7 +23,9 @@ export default class game extends Component {
         let newOrder = this.randomOrder()
         this.setState({order:newOrder})
     }
-    
+    handleCheat = (e) => {
+        this.setState({order:this.correctOrder})
+    }
     handleSelect = (pos) => {
 
         if(!this.state.order[pos]){
@@ -82,14 +84,17 @@ export default class game extends Component {
     
     render() {
         return (
-            <div>
-                <div style={this.gameStyle}>
+            <div style={this.gameStyle}>
+                <div>
                     <Board  value={this.state.order} 
                             onClick={this.handleSelect}
                     />
                 </div>
                 <div>
-                    <Menu onClick={this.handleRetry} message={this.state.message}/>
+                    <Menu   onClickRetry={this.handleRetry} 
+                            onClickCheat={this.handleCheat}
+                            message={this.state.message}                            
+                    />
                 </div>
             </div>
         ) 
