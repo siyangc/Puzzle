@@ -6,7 +6,7 @@ export default class game extends Component {
         super(props);
         this.state = {
             order: '',
-            message: 'handling the puzzle'        
+            message: 'You can do it!'        
         }
     }
      
@@ -20,12 +20,12 @@ export default class game extends Component {
     correctOrder = [1,2,3,4,5,6,7,8,null]
 
     handleRetry = (e) => {        
-        let newOrder = this.randomOrder()
-        this.setState({order:newOrder})
+        this.setState({order:this.randomOrder(),message:'you can do it'})
     }
     handleCheat = (e) => {
-        this.setState({order:this.correctOrder})
+        this.setState({order:this.correctOrder,message:'congratulations'})
     }
+
     handleSelect = (pos) => {
 
         if(!this.state.order[pos]){
@@ -37,17 +37,14 @@ export default class game extends Component {
             let newOrder = [...this.state.order]
             newOrder[nextMove] = newOrder[pos]
             newOrder[pos] = null        
-            if(this.checkWin(newOrder)){
-                this.setState({order:newOrder,message:'congratulations'})
-            }else{
-                this.setState({order:newOrder})
-            }
-            
+            this.checkWin(newOrder)            
         }else{
             return
         }
         
     }
+
+    //initialize the order of the puzzle
     randomOrder = () => {       
         let initOrder = [1,2,3,4,5,6,7,8];
         let randomOrder = [];
@@ -77,9 +74,13 @@ export default class game extends Component {
         let space = neighbour[pos].filter(i=>!this.state.order[i])          
         return space        
     }
-    checkWin = (order) => {
-        let isWin = (order.toString() === this.correctOrder.toString())
-        return isWin
+    checkWin = (nextOrder) => {
+        let isWin = (nextOrder.toString() === this.correctOrder.toString())
+        if(isWin){
+            this.setState({order:nextOrder,message:'congratulations'})
+        }else{
+            this.setState({order:nextOrder,message:'you can do it'})
+        }
     }
     
     render() {
