@@ -5,7 +5,7 @@ export default class game extends Component {
     constructor(props){
         super(props);
         this.state = {
-            order: [1,2,3,4,5,6,7,8,null],
+            order: '',
             message: 'handling the puzzle'        
         }
     }
@@ -13,8 +13,7 @@ export default class game extends Component {
     componentWillMount = () =>{
         this.setState({order:this.randomOrder()})
     }
-    
-    
+        
     gameStyle = {
         margin: '50px'
     }
@@ -48,16 +47,18 @@ export default class game extends Component {
         
     }
     randomOrder = () => {       
-        let Order = [1,2,3,4,5,6,7,8];
-        for (let i=7;i>=0;i--){
-            let randomIndex = Math.floor(Math.random()*(i+1));
-            let itemAtIndex = Order[randomIndex]
-            Order[randomIndex] = Order[i]
-            Order[i] = itemAtIndex
-        }
-        Order.push(null)
-       
-        return Order
+        let initOrder = [1,2,3,4,5,6,7,8];
+        let randomOrder = [];
+        do {
+            for (let i=7;i>=0;i--){
+                let randomIndex = Math.floor(Math.random()*(i+1));
+                let itemAtIndex = initOrder[randomIndex]
+                initOrder[randomIndex] = initOrder[i]
+                randomOrder[i] = itemAtIndex
+            }
+            randomOrder.push(null)
+        }while(initOrder.toString()===randomOrder.toString())
+        return randomOrder
     };
     move = (pos) => {
         let neighbour = [
