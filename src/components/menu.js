@@ -3,10 +3,11 @@ import React from 'react'
 export default function menu(props) {
 
     const menuStyle = {
-        marginTop: '30px',
+        margin: '30px auto',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around'      
+        justifyContent: 'space-around',
+        width: '300px'      
     }
 
     const messageStyle = {
